@@ -1,0 +1,10 @@
+Main test : test.c ;
+switch $(JAM_TOOLSET)
+{
+		case VISUALC : WLIBS = setupapi.lib ;
+		case MINGW : WLIBS = -lsetupapi ;
+		case * : ECHO $JAM_TOOLSET ;
+}
+LINKLIBS on test$(SUFEXE) = $(WLIBS) ;
+LinkLibraries test : liblusb ;
+Library liblusb : lusb.c ;
